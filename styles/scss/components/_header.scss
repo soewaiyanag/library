@@ -1,0 +1,64 @@
+@use "../mixin" as *;
+
+header {
+  /* ---- TITLE  ----*/
+
+  .heading {
+    border-bottom: 2px solid var(--clr-text-secondary);
+
+    .books {
+      @include thinText;
+      margin-top: 0.5rem;
+    }
+  }
+  /* ---- TOGGLE ----*/
+  .toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__label {
+      font-weight: bold;
+      color: var(--clr-text-secondary);
+    }
+
+    &__switch {
+      position: relative;
+      cursor: pointer;
+      width: 50px;
+      height: 25px;
+      appearance: none;
+      @include gradient(dark);
+      border-radius: 5rem;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0%;
+        height: 25px;
+        width: 25px;
+        border-radius: 50%;
+        background-color: var(--clr-bg-top);
+        transform: scale(0.9);
+        transition: 300ms left;
+      }
+
+      &:checked {
+        @include gradient(light);
+        &:hover {
+          @include gradient(dark);
+        }
+      }
+      &:checked::before {
+        left: 25px;
+      }
+    }
+  }
+  // BTN CONTAINER
+  .btn-container {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+  }
+}

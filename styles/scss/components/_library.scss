@@ -1,0 +1,59 @@
+@use "../mixin" as *;
+@use "../variables" as *;
+
+.library-container {
+  margin-top: 2rem;
+  display: grid;
+  gap: 2rem;
+  .book-card {
+    position: relative;
+
+    &::before {
+      content: "";
+      background: var(--clr-card-border);
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 0.3rem;
+      width: 100%;
+      border-top-left-radius: 0.4rem;
+      border-top-right-radius: 0.4rem;
+    }
+  }
+  .book-aurthor {
+    &::before {
+      content: "by";
+      @include thinText;
+      margin: 0.5rem;
+    }
+  }
+  .read-toggle {
+    margin-top: 1rem;
+    appearance: none;
+    cursor: pointer;
+    width: 75px;
+    height: 25px;
+    @include gradient(dark);
+    color: var(--clr-text-primary);
+    padding: 0.5rem;
+    border-radius: 3px;
+    text-transform: uppercase;
+    // center text
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    &::before {
+      content: "read";
+      font-weight: 700;
+    }
+    &:checked {
+      @include gradient(light);
+
+      &::before {
+        content: "not yet";
+      }
+    }
+  }
+}

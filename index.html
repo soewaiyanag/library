@@ -2,9 +2,61 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Library</title>
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | [Challenge Name Here]</title>
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+        padding-bottom: 1rem;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./styles/css/style.css" />
+    <!-- JAVASCRIPT -->
+    <script defer src="./script.js"></script>
   </head>
-  <body></body>
+  <body class="dark-theme">
+    <main class="container">
+      <header>
+        <div class="heading">
+          <h1>The Odin Project Library</h1>
+          <h4 class="books">Total books: <span class="total-books">0</span></h4>
+        </div>
+        <div class="toggle">
+          <label class="toggle__label" for="theme-switcher">Dark Mode</label>
+          <input
+            type="checkbox"
+            name="theme-switcher"
+            class="toggle__switch"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="btn-container">
+          <button class="add-book btn btn-gradient">Add Book</button>
+          <button class="login btn btn-transparent">Login</button>
+        </div>
+      </header>
+      <!-- MIDDLE SECTION -->
+      <section class="library-container">
+        <div class="book-card">
+          <h1 class="book-title">The Guys of Rangoon</h1>
+          <h3 class="book-aurthor">Khat Zaw</h3>
+          <input class="read-toggle" type="checkbox" name="read-toggle" />
+        </div>
+      </section>
+    </main>
+  </body>
 </html>

@@ -1,0 +1,45 @@
+@use "mixin" as *;
+
+// DEFAULT BREAKPOINT === $md
+
+@include media-breakpoint-down {
+  .heading {
+    padding-bottom: 2rem;
+  }
+  .toggle {
+    padding-top: 2rem;
+  }
+}
+
+@include media-breakpoint-up {
+  header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    .heading {
+      border-bottom: none;
+    }
+    .toggle {
+      width: 150px;
+      justify-self: end;
+    }
+    .btn-container {
+      grid-column: span 2;
+      justify-content: flex-end;
+    }
+  }
+  .library-container {
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
+  }
+  .overview {
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
+  }
+}
+
+@include media-breakpoint-up($lg) {
+  .library-container {
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
+  }
+  .overview {
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
+  }
+}
