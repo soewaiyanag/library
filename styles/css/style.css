@@ -45,7 +45,7 @@
   display: inline-block;
   outline: none;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 700;
   border-radius: 3px;
   padding: 0 16px;
   border-radius: 4px;
@@ -197,14 +197,11 @@ header .btn-container {
 }
 .library-container .book-card::before {
   content: "";
-  background: var(--clr-card-border);
+  background: linear-gradient(90deg, #378fe6 0%, #3eda82 100%);
   position: absolute;
-  top: 0;
-  left: 0;
-  height: 0.3rem;
-  width: 100%;
-  border-top-left-radius: 0.4rem;
-  border-top-right-radius: 0.4rem;
+  inset: -1px;
+  border-radius: 0.4rem;
+  z-index: -1;
 }
 .library-container .book-aurthor::before {
   content: "by";
@@ -236,8 +233,7 @@ header .btn-container {
   font-weight: 700;
 }
 .library-container .read-toggle:checked {
-  background: #aeb3cb;
-  box-shadow: inset rgba(0, 0, 0, 0.5);
+  background: #ff0000;
 }
 .library-container .read-toggle:checked::before {
   content: "not yet";

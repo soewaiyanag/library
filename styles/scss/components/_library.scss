@@ -10,14 +10,18 @@
 
     &::before {
       content: "";
-      background: var(--clr-card-border);
+      // background: var(--clr-card-border);
+      @include gradient(color);
       position: absolute;
-      top: 0;
-      left: 0;
-      height: 0.3rem;
-      width: 100%;
-      border-top-left-radius: 0.4rem;
-      border-top-right-radius: 0.4rem;
+      inset: -1px;
+      border-radius: 0.4rem;
+      z-index: -1;
+      // top: 0;
+      // left: 0;
+      // height: 0.3rem;
+      // width: 100%;
+      // border-top-left-radius: 0.4rem;
+      // border-top-right-radius: 0.4rem;
     }
   }
   .book-aurthor {
@@ -33,7 +37,7 @@
     cursor: pointer;
     width: 75px;
     height: 25px;
-    @include gradient(dark);
+    @include gradient(color);
     color: var(--clr-text-primary);
     padding: 0.5rem;
     border-radius: 3px;
@@ -49,7 +53,7 @@
       font-weight: 700;
     }
     &:checked {
-      @include gradient(light);
+      @include gradient(notRead);
 
       &::before {
         content: "not yet";

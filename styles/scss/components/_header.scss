@@ -28,7 +28,7 @@ header {
       width: 50px;
       height: 25px;
       appearance: none;
-      @include gradient(dark);
+      @include gradient(color);
       border-radius: 5rem;
 
       &::before {
@@ -44,9 +44,9 @@ header {
       }
 
       &:checked {
-        @include gradient(light);
+        @include gradient(white);
         &:hover {
-          @include gradient(dark);
+          @include gradient(color);
         }
       }
       &:checked::before {
