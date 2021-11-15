@@ -7,21 +7,28 @@
   gap: 2rem;
   .book-card {
     position: relative;
+    text-align: center;
+    padding: 2rem;
+    border-radius: 0.4rem;
+    background-color: var(--clr-bg-card);
+    transition: background-color 200ms;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    &:hover {
+      background-color: var(--clr-bg-card-hover);
+    }
 
     &::before {
       content: "";
       // background: var(--clr-card-border);
       @include gradient(color);
       position: absolute;
-      inset: -1px;
-      border-radius: 0.4rem;
-      z-index: -1;
-      // top: 0;
-      // left: 0;
-      // height: 0.3rem;
-      // width: 100%;
-      // border-top-left-radius: 0.4rem;
-      // border-top-right-radius: 0.4rem;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      border-top-left-radius: 0.4rem;
+      border-top-right-radius: 0.4rem;
+      // z-index: -1;
     }
   }
   .book-aurthor {
@@ -32,32 +39,6 @@
     }
   }
   .read-toggle {
-    margin-top: 1rem;
-    appearance: none;
-    cursor: pointer;
-    width: 75px;
-    height: 25px;
-    @include gradient(color);
-    color: var(--clr-text-primary);
-    padding: 0.5rem;
-    border-radius: 3px;
-    text-transform: uppercase;
-    // center text
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-    &::before {
-      content: "read";
-      font-weight: 700;
-    }
-    &:checked {
-      @include gradient(notRead);
-
-      &::before {
-        content: "not yet";
-      }
-    }
+    line-height: 2.5;
   }
 }

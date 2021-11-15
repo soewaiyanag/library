@@ -1,0 +1,39 @@
+@use "../mixin" as *;
+@use "../variables" as *;
+
+form.hide {
+  display: none;
+}
+
+form {
+  background-color: var(--clr-bg-card);
+  padding: 2rem 2.5rem;
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  > * {
+    width: 100%;
+  }
+  input {
+    font-weight: 700;
+    border-radius: 3px;
+    padding: 0 16px;
+    border-radius: 4px;
+    line-height: 1.15;
+    font-size: 14px;
+    height: 36px;
+    word-spacing: 0px;
+    letter-spacing: 0.1em;
+    min-width: 64px;
+    border: none;
+    outline: none;
+    text-align: center;
+  }
+  .isRead {
+    margin-top: 0;
+    text-transform: uppercase;
+  }
+  .btn {
+    margin-left: auto;
+  }
+}

@@ -12,11 +12,16 @@
     />
 
     <title>The Library</title>
+    <!-- FONTAWESOME -->
+    <script
+      src="https://kit.fontawesome.com/07696ff9fe.js"
+      crossorigin="anonymous"
+    ></script>
 
     <!-- CSS -->
     <link rel="stylesheet" href="./styles/css/style.css" />
     <!-- JAVASCRIPT -->
-    <script defer src="./javascript/dark-theme-toggle.js"></script>
+    <script defer src="./javascript/toggle.js"></script>
     <script defer src="./javascript/app.js"></script>
   </head>
   <body class="dark-theme">
@@ -41,13 +46,20 @@
           <button class="login btn btn-transparent">Login</button>
         </div>
       </header>
+      <form class="hide">
+        <input class="title-input" type="text" placeholder="TITLE" />
+        <input class="aurthor-input" type="text" placeholder="AURTHOR" />
+        <input class="isRead read-toggle" type="checkbox" />
+        <button class="submit-book btn btn-gradient">add</button>
+        <!-- <i class="fas fa-times close-form"></i> -->
+      </form>
       <!-- MIDDLE SECTION -->
       <section class="library-container">
         <div class="book-card">
           <h1 class="book-title">The Guys of Rangoon</h1>
           <h3 class="book-aurthor">Khat Zaw</h3>
           <input
-            class="read-toggle"
+            class="read-toggle btn"
             type="checkbox"
             name="read-toggle"
             checked
