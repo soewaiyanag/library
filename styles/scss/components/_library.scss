@@ -39,7 +39,7 @@
     &::before {
       content: "by";
       @include thinText;
-      margin: 0.5rem;
+      margin-bottom: 0.5rem;
     }
   }
   .book-read {
