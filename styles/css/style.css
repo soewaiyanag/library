@@ -181,6 +181,75 @@ header .btn-container {
   justify-content: space-between;
 }
 
+.alert-container {
+  margin-top: 1rem;
+}
+.alert-container p {
+  border-radius: 3px;
+  padding: 0.2rem;
+  text-align: center;
+  background-color: rgba(255, 0, 0, 0.7);
+}
+
+:root {
+  --clr-text-lime: hsl(163, 72%, 41%);
+  --clr-card-border: hsl(208, 92%, 53%);
+}
+
+.dark-theme {
+  --clr-bg-theme: hsl(230, 17%, 14%);
+  --clr-bg-top: hsl(232, 19%, 15%);
+  --clr-bg-card: hsl(228, 28%, 20%);
+  --clr-bg-card-hover: hsl(228, 29%, 24%);
+  --clr-text-secondary: hsl(228, 34%, 66%);
+  --clr-text-primary: hsl(0, 0%, 100%);
+}
+
+.dark-theme.disable {
+  --clr-bg-theme: hsl(0, 0%, 100%);
+  --clr-bg-top: hsl(225, 100%, 98%);
+  --clr-bg-card: hsl(227, 47%, 96%);
+  --clr-bg-card-hover: hsl(227, 47%, 92%);
+  --clr-text-secondary: hsl(228, 12%, 44%);
+  --clr-text-primary: hsl(230, 17%, 14%);
+}
+
+form.hide {
+  display: none;
+}
+
+form {
+  background-color: var(--clr-bg-card);
+  padding: 2rem 2.5rem;
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+form > * {
+  width: 100%;
+}
+form input {
+  font-weight: 700;
+  border-radius: 3px;
+  padding: 0 16px;
+  border-radius: 4px;
+  line-height: 1.15;
+  font-size: 14px;
+  height: 36px;
+  word-spacing: 0px;
+  letter-spacing: 0.1em;
+  min-width: 64px;
+  border: none;
+  outline: none;
+  text-align: center;
+}
+form .isRead {
+  text-transform: uppercase;
+}
+form .btn {
+  margin-left: auto;
+}
+
 :root {
   --clr-text-lime: hsl(163, 72%, 41%);
   --clr-card-border: hsl(208, 92%, 53%);
@@ -254,65 +323,6 @@ header .btn-container {
   max-width: 100px;
   color: #fff;
   background: #ff0000;
-}
-
-:root {
-  --clr-text-lime: hsl(163, 72%, 41%);
-  --clr-card-border: hsl(208, 92%, 53%);
-}
-
-.dark-theme {
-  --clr-bg-theme: hsl(230, 17%, 14%);
-  --clr-bg-top: hsl(232, 19%, 15%);
-  --clr-bg-card: hsl(228, 28%, 20%);
-  --clr-bg-card-hover: hsl(228, 29%, 24%);
-  --clr-text-secondary: hsl(228, 34%, 66%);
-  --clr-text-primary: hsl(0, 0%, 100%);
-}
-
-.dark-theme.disable {
-  --clr-bg-theme: hsl(0, 0%, 100%);
-  --clr-bg-top: hsl(225, 100%, 98%);
-  --clr-bg-card: hsl(227, 47%, 96%);
-  --clr-bg-card-hover: hsl(227, 47%, 92%);
-  --clr-text-secondary: hsl(228, 12%, 44%);
-  --clr-text-primary: hsl(230, 17%, 14%);
-}
-
-form.hide {
-  display: none;
-}
-
-form {
-  background-color: var(--clr-bg-card);
-  padding: 2rem 2.5rem;
-  margin-top: 1rem;
-  display: flex;
-  gap: 1rem;
-}
-form > * {
-  width: 100%;
-}
-form input {
-  font-weight: 700;
-  border-radius: 3px;
-  padding: 0 16px;
-  border-radius: 4px;
-  line-height: 1.15;
-  font-size: 14px;
-  height: 36px;
-  word-spacing: 0px;
-  letter-spacing: 0.1em;
-  min-width: 64px;
-  border: none;
-  outline: none;
-  text-align: center;
-}
-form .isRead {
-  text-transform: uppercase;
-}
-form .btn {
-  margin-left: auto;
 }
 
 @media (max-width: 768px) {

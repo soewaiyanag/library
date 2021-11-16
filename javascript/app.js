@@ -56,7 +56,6 @@ function createBookCard(book) {
         b.read = read;
       }
     });
-    console.log(library);
   });
 }
 
@@ -67,6 +66,16 @@ function del(title, aurthor) {
   resetLibrary();
   showTotalBook();
   showBooks();
+}
+
+function showAlert(message) {
+  const alertContainer = document.querySelector(".alert-container");
+  const alert = document.createElement("p");
+  alert.textContent = message.toUpperCase();
+  alertContainer.appendChild(alert);
+  setTimeout(function () {
+    alert.remove();
+  }, 2800);
 }
 
 function showTotalBook() {
@@ -109,8 +118,10 @@ function isExist(title, aurthor) {
 }
 
 function addBookToLibrary(title, aurthor, read) {
-  if (!title || !aurthor) {
-    console.log("oh no");
+  if (!title) {
+    showAlert("Title : Required");
+  } else if (!aurthor) {
+    showAlert("Aurthor : Required");
   } else {
     let book = new Book(title, aurthor, read);
     library.push(book);
@@ -131,4 +142,9 @@ submitBookBtn.addEventListener("click", function (e) {
     showTotalBook();
     showBooks();
   }
+});
+
+const loginBtn = document.querySelector(".login.btn");
+loginBtn.addEventListener("click", function () {
+  showAlert("Haven't learn backend yet");
 });
