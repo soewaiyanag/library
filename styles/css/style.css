@@ -219,7 +219,8 @@ header .btn-container {
   padding: 2rem;
   border-radius: 0.4rem;
   background-color: var(--clr-bg-card);
-  transition: background-color 200ms;
+  opacity: 1;
+  transition: background-color 200ms, opacity 500ms;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 .library-container .book-card:hover {

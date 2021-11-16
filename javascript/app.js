@@ -37,9 +37,26 @@ function createBookCard(book) {
 
   // Add events
   remove.addEventListener("click", function () {
-    let title = this.parentElement.querySelector(".book-title").textContent;
-    let aurthor = this.parentElement.querySelector(".book-aurthor").textContent;
-    del(title, aurthor);
+    const book = this.parentElement;
+    let title = book.querySelector(".book-title").textContent;
+    let aurthor = book.querySelector(".book-aurthor").textContent;
+    book.style.opacity = 0;
+    book.addEventListener("transitionend", function () {
+      del(title, aurthor);
+    });
+  });
+
+  read.addEventListener("click", function () {
+    const book = this.parentElement;
+    let title = book.querySelector(".book-title").textContent;
+    let aurthor = book.querySelector(".book-aurthor").textContent;
+    let read = book.querySelector(".book-read").checked;
+    library.forEach(function (b) {
+      if (title === b.title && aurthor === b.aurthor) {
+        b.read = read;
+      }
+    });
+    console.log(library);
   });
 }
 
