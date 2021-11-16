@@ -6,7 +6,7 @@
   margin-right: auto;
 }
 
-.read-toggle {
+.book-read {
   margin-top: 1rem;
   appearance: none;
   cursor: pointer;
@@ -26,7 +26,7 @@
     font-weight: 700;
   }
   &:checked {
-    @include gradient(notRead);
+    @include gradient(red);
 
     &::before {
       content: "unread";
@@ -58,6 +58,11 @@
     outline: white 0.1rem solid;
     box-shadow: none;
   }
+}
+
+.btn-red {
+  color: #fff;
+  @include gradient(red);
 }
 
 .btn-gradient {

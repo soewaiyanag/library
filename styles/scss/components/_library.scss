@@ -6,6 +6,10 @@
   display: grid;
   gap: 2rem;
   .book-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
     position: relative;
     text-align: center;
     padding: 2rem;
@@ -38,7 +42,11 @@
       margin: 0.5rem;
     }
   }
-  .read-toggle {
+  .book-read {
     line-height: 2.5;
+    color: #fff;
+  }
+  .book-remove {
+    max-width: 100px;
   }
 }

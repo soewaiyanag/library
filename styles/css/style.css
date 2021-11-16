@@ -29,7 +29,7 @@
   margin-right: auto;
 }
 
-.read-toggle {
+.book-read {
   margin-top: 1rem;
   appearance: none;
   cursor: pointer;
@@ -41,14 +41,14 @@
   margin-left: auto;
   margin-right: auto;
 }
-.read-toggle::before {
+.book-read::before {
   content: "read";
   font-weight: 700;
 }
-.read-toggle:checked {
+.book-read:checked {
   background: #ff0000;
 }
-.read-toggle:checked::before {
+.book-read:checked::before {
   content: "unread";
 }
 
@@ -75,6 +75,11 @@
 .btn:active {
   outline: white 0.1rem solid;
   box-shadow: none;
+}
+
+.btn-red {
+  color: #fff;
+  background: #ff0000;
 }
 
 .btn-gradient {
@@ -204,6 +209,10 @@ header .btn-container {
   gap: 2rem;
 }
 .library-container .book-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
   position: relative;
   text-align: center;
   padding: 2rem;
@@ -234,8 +243,12 @@ header .btn-container {
   color: var(--clr-text-secondary);
   margin: 0.5rem;
 }
-.library-container .read-toggle {
+.library-container .book-read {
   line-height: 2.5;
+  color: #fff;
+}
+.library-container .book-remove {
+  max-width: 100px;
 }
 
 :root {
@@ -309,9 +322,6 @@ form .btn {
 
   form {
     flex-direction: column;
-  }
-  form > * {
-    width: 100%;
   }
   form .btn {
     margin: 0 auto;

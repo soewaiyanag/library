@@ -10,7 +10,7 @@
     background: hsl(230, 22%, 74%);
     box-shadow: inset rgb(0, 0, 0, 0.5);
   }
-  @if $theme == notRead {
+  @if $theme == red {
     background: #ff0000;
   }
 }
