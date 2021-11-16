@@ -46,7 +46,8 @@
   font-weight: 700;
 }
 .book-read:checked {
-  background: #ff0000;
+  background-color: #bd4f6c;
+  background-image: linear-gradient(326deg, #bd4f6c 0%, #d7816a 74%);
 }
 .book-read:checked::before {
   content: "unread";
@@ -79,7 +80,8 @@
 
 .btn-red {
   color: #fff;
-  background: #ff0000;
+  background-color: #bd4f6c;
+  background-image: linear-gradient(326deg, #bd4f6c 0%, #d7816a 74%);
 }
 
 .btn-gradient {
@@ -149,7 +151,6 @@ header .toggle__switch {
   width: 50px;
   height: 25px;
   appearance: none;
-  background: linear-gradient(90deg, #378fe6 0%, #3eda82 100%);
   border-radius: 5rem;
 }
 header .toggle__switch::before {
@@ -166,9 +167,6 @@ header .toggle__switch::before {
 header .toggle__switch:checked {
   background: #aeb3cb;
   box-shadow: inset rgba(0, 0, 0, 0.5);
-}
-header .toggle__switch:checked:hover {
-  background: linear-gradient(90deg, #378fe6 0%, #3eda82 100%);
 }
 header .toggle__switch:checked::before {
   left: 25px;
@@ -246,9 +244,12 @@ header .btn-container {
 .library-container .book-read {
   line-height: 2.5;
   color: #fff;
+  min-width: 100px;
 }
 .library-container .book-remove {
   max-width: 100px;
+  color: #fff;
+  background: #ff0000;
 }
 
 :root {

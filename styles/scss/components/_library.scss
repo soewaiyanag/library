@@ -24,7 +24,7 @@
     &::before {
       content: "";
       // background: var(--clr-card-border);
-      @include gradient(color);
+      @include gradient(lime);
       position: absolute;
       top: 0;
       left: 0;
@@ -45,8 +45,11 @@
   .book-read {
     line-height: 2.5;
     color: #fff;
+    min-width: 100px;
   }
   .book-remove {
     max-width: 100px;
+    color: #fff;
+    background: #ff0000;
   }
 }
