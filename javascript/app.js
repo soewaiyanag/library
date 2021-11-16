@@ -146,5 +146,5 @@ submitBookBtn.addEventListener("click", function (e) {
 
 const loginBtn = document.querySelector(".login.btn");
 loginBtn.addEventListener("click", function () {
-  showAlert("Haven't learn backend yet");
+  showAlert("Haven't learned backend yet");
 });
