@@ -47,7 +47,7 @@ function del(title, aurthor) {
   library = library.filter(function (b) {
     return b.title !== title || b.aurthor !== aurthor;
   });
-  reset();
+  resetLibrary();
   showTotalBook();
   showBooks();
 }
@@ -64,9 +64,12 @@ function showBooks() {
   }
 }
 
-function reset() {
+function resetLibrary() {
   //  Reset the whole library so that books won't multi
   document.querySelector(".library-container").innerHTML = "";
+}
+
+function resetForm() {
   //  Reset the form inputs
   document.querySelector(".title-input").value = "";
   document.querySelector(".aurthor-input").value = "";
@@ -106,7 +109,8 @@ submitBookBtn.addEventListener("click", function (e) {
   let read = document.querySelector(".isRead").checked;
   if (isExist(title, aurthor)) {
     addBookToLibrary(title, aurthor, read);
-    reset();
+    resetForm();
+    resetLibrary();
     showTotalBook();
     showBooks();
   }
