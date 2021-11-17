@@ -154,6 +154,7 @@ submitBookBtn.addEventListener("click", function (e) {
   let aurthor = document.querySelector(".aurthor-input").value;
   let read = document.querySelector(".isRead").checked;
   if (isNotExist(title, aurthor)) {
+    resetForm();
     addBookToLibrary(title, aurthor, read);
     setLibrary();
   } else {
