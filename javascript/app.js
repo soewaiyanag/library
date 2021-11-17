@@ -6,6 +6,23 @@ function Book(title, aurthor, read) {
   this.read = read;
 }
 
+window.addEventListener("DOMContentLoaded", function () {
+  getLibrary();
+});
+
+function setLibrary() {
+  showBooks();
+  showTotalBook();
+  localStorage.clear();
+  localStorage.setItem("book-library", JSON.stringify(library));
+}
+
+function getLibrary() {
+  library = JSON.parse(localStorage.getItem("book-library"));
+  showBooks();
+  showTotalBook();
+}
+
 function createBookCard(book) {
   // Create Elements
   const card = document.createElement("div");
@@ -40,10 +57,10 @@ function createBookCard(book) {
     const book = this.parentElement;
     let title = book.querySelector(".book-title").textContent;
     let aurthor = book.querySelector(".book-aurthor").textContent;
-    book.style.opacity = 0;
-    book.addEventListener("transitionend", function () {
-      del(title, aurthor);
-    });
+    del(title, aurthor);
+
+    resetLibrary();
+    setLibrary();
   });
 
   read.addEventListener("click", function () {
@@ -56,6 +73,9 @@ function createBookCard(book) {
         b.read = read;
       }
     });
+
+    resetLibrary();
+    setLibrary();
   });
 }
 
@@ -63,9 +83,6 @@ function del(title, aurthor) {
   library = library.filter(function (b) {
     return b.title !== title || b.aurthor !== aurthor;
   });
-  resetLibrary();
-  showTotalBook();
-  showBooks();
 }
 
 function showAlert(message) {
@@ -103,7 +120,7 @@ function resetForm() {
 }
 
 // To check the book that if input is already exist in library or not
-function isExist(title, aurthor) {
+function isNotExist(title, aurthor) {
   let totalBooks = library.length;
   for (let i = 0; i < totalBooks; i++) {
     let book = library[i];
@@ -125,6 +142,7 @@ function addBookToLibrary(title, aurthor, read) {
   } else {
     let book = new Book(title, aurthor, read);
     library.push(book);
+    resetLibrary();
   }
 }
 
@@ -135,16 +153,15 @@ submitBookBtn.addEventListener("click", function (e) {
   let title = document.querySelector(".title-input").value;
   let aurthor = document.querySelector(".aurthor-input").value;
   let read = document.querySelector(".isRead").checked;
-  if (isExist(title, aurthor)) {
+  if (isNotExist(title, aurthor)) {
     addBookToLibrary(title, aurthor, read);
-    resetForm();
-    resetLibrary();
-    showTotalBook();
-    showBooks();
+    setLibrary();
+  } else {
+    showAlert("The book is already exists");
   }
 });
 
 const loginBtn = document.querySelector(".login.btn");
 loginBtn.addEventListener("click", function () {
-  showAlert("Haven't learned backend yet");
+  showAlert("Haven't learn backend yet");
 });
