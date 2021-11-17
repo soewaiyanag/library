@@ -18,7 +18,7 @@ function setLibrary() {
 }
 
 function getLibrary() {
-  library = JSON.parse(localStorage.getItem("book-library"));
+  library = JSON.parse(localStorage.getItem("book-library")) ?? [];
   showBooks();
   showTotalBook();
 }
