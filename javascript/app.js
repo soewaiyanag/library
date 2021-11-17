@@ -11,6 +11,7 @@ window.addEventListener("DOMContentLoaded", function () {
 });
 
 function setLibrary() {
+  resetLibrary(); /* last commit fix multiplying book problem */
   showBooks();
   showTotalBook();
   localStorage.clear();
