@@ -1,5 +1,5 @@
 const body = document.querySelector("body");
-const toggle = document.querySelector(".toggle__switch");
+const toggle = document.querySelector(".toggle .switch");
 
 toggle.addEventListener("click", () => {
   body.classList.toggle("disable");
