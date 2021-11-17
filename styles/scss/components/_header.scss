@@ -17,12 +17,12 @@ header {
     justify-content: space-between;
     align-items: center;
 
-    &__label {
+    .label {
       font-weight: bold;
       color: var(--clr-text-secondary);
     }
 
-    &__switch {
+    .switch {
       position: relative;
       cursor: pointer;
       width: 50px;
