@@ -11,7 +11,7 @@ window.addEventListener("DOMContentLoaded", function () {
 });
 
 function setLibrary() {
-  resetLibrary(); /* last commit fix multiplying book problem */
+  resetLibrary();
   showBooks();
   showTotalBook();
   localStorage.clear();
@@ -154,13 +154,21 @@ submitBookBtn.addEventListener("click", function (e) {
   let title = document.querySelector(".title-input").value;
   let author = document.querySelector(".author-input").value;
   let read = document.querySelector(".isRead").checked;
-  if (isNotExist(title, author)) {
-    resetForm();
-    addBookToLibrary(title, author, read);
-    setLibrary();
-  } else {
-    showAlert("The book is already exists");
+
+  function validition() {
+    if (title.length > 50 || author.length > 50) {
+      showAlert("Input can't be longer than 50");
+    } else {
+      if (isNotExist(title, author)) {
+        resetForm();
+        addBookToLibrary(title, author, read);
+        setLibrary();
+      } else {
+        showAlert("The book is already exists");
+      }
+    }
   }
+  validition();
 });
 
 const loginBtn = document.querySelector(".login.btn");
