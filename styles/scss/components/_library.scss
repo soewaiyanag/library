@@ -35,7 +35,7 @@
       border-top-right-radius: 0.4rem;
     }
   }
-  .book-aurthor {
+  .book-author {
     &::before {
       content: "by";
       @include thinText;

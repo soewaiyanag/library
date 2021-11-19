@@ -1,8 +1,8 @@
 let library = [];
 
-function Book(title, aurthor, read) {
+function Book(title, author, read) {
   this.title = title;
-  this.aurthor = aurthor;
+  this.author = author;
   this.read = read;
 }
 
@@ -28,28 +28,28 @@ function createBookCard(book) {
   // Create Elements
   const card = document.createElement("div");
   const title = document.createElement("h1");
-  const aurthor = document.createElement("h3");
+  const author = document.createElement("h3");
   const read = document.createElement("input");
   const remove = document.createElement("button");
 
   // Add Attributes
   card.className = "book-card";
   title.className = "book-title";
-  aurthor.className = "book-aurthor";
+  author.className = "book-author";
   read.className = "book-read btn read-toggle";
   read.setAttribute("type", "checkbox");
   remove.className = "book-remove btn";
 
   // Take value from form and store
   title.textContent = book.title;
-  aurthor.textContent = book.aurthor;
+  author.textContent = book.author;
   read.checked = book.read;
   remove.textContent = "remove";
 
   // Add elements to library UI
   document.querySelector(".library-container").appendChild(card);
   card.appendChild(title);
-  card.appendChild(aurthor);
+  card.appendChild(author);
   card.appendChild(read);
   card.appendChild(remove);
 
@@ -57,8 +57,8 @@ function createBookCard(book) {
   remove.addEventListener("click", function () {
     const book = this.parentElement;
     let title = book.querySelector(".book-title").textContent;
-    let aurthor = book.querySelector(".book-aurthor").textContent;
-    del(title, aurthor);
+    let author = book.querySelector(".book-author").textContent;
+    del(title, author);
 
     resetLibrary();
     setLibrary();
@@ -67,10 +67,10 @@ function createBookCard(book) {
   read.addEventListener("click", function () {
     const book = this.parentElement;
     let title = book.querySelector(".book-title").textContent;
-    let aurthor = book.querySelector(".book-aurthor").textContent;
+    let author = book.querySelector(".book-author").textContent;
     let read = book.querySelector(".book-read").checked;
     library.forEach(function (b) {
-      if (title === b.title && aurthor === b.aurthor) {
+      if (title === b.title && author === b.author) {
         b.read = read;
       }
     });
@@ -80,9 +80,9 @@ function createBookCard(book) {
   });
 }
 
-function del(title, aurthor) {
+function del(title, author) {
   library = library.filter(function (b) {
-    return b.title !== title || b.aurthor !== aurthor;
+    return b.title !== title || b.author !== author;
   });
 }
 
@@ -116,18 +116,18 @@ function resetLibrary() {
 function resetForm() {
   //  Reset the form inputs
   document.querySelector(".title-input").value = "";
-  document.querySelector(".aurthor-input").value = "";
+  document.querySelector(".author-input").value = "";
   document.querySelector(".isRead").checked = false;
 }
 
 // To check the book that if input is already exist in library or not
-function isNotExist(title, aurthor) {
+function isNotExist(title, author) {
   let totalBooks = library.length;
   for (let i = 0; i < totalBooks; i++) {
     let book = library[i];
     if (
       book.title.toLowerCase() === title.toLowerCase() &&
-      book.aurthor.toLowerCase() === aurthor.toLowerCase()
+      book.author.toLowerCase() === author.toLowerCase()
     ) {
       return false;
     }
@@ -135,13 +135,13 @@ function isNotExist(title, aurthor) {
   return true;
 }
 
-function addBookToLibrary(title, aurthor, read) {
+function addBookToLibrary(title, author, read) {
   if (!title) {
     showAlert("Title : Required");
-  } else if (!aurthor) {
-    showAlert("Aurthor : Required");
+  } else if (!author) {
+    showAlert("author : Required");
   } else {
-    let book = new Book(title, aurthor, read);
+    let book = new Book(title, author, read);
     library.push(book);
     resetLibrary();
   }
@@ -152,11 +152,11 @@ const submitBookBtn = document.querySelector(".submit-book");
 submitBookBtn.addEventListener("click", function (e) {
   e.preventDefault();
   let title = document.querySelector(".title-input").value;
-  let aurthor = document.querySelector(".aurthor-input").value;
+  let author = document.querySelector(".author-input").value;
   let read = document.querySelector(".isRead").checked;
-  if (isNotExist(title, aurthor)) {
+  if (isNotExist(title, author)) {
     resetForm();
-    addBookToLibrary(title, aurthor, read);
+    addBookToLibrary(title, author, read);
     setLibrary();
   } else {
     showAlert("The book is already exists");
