@@ -2,7 +2,8 @@ const libraryContainer = document.querySelector(".library-container");
 let library = [];
 
 class Book {
-  constructor(title, author, read) {
+  constructor(id, title, author, read) {
+    this.id = id;
     this.title = title;
     this.author = author;
     this.read = read;
@@ -34,7 +35,6 @@ libraryContainer.addEventListener("click", (event) => {
     let title = book.querySelector(".book-title").textContent;
     let author = book.querySelector(".book-author").textContent;
     del(title, author);
-
     resetLibrary();
     setLibrary();
   }
@@ -50,6 +50,7 @@ function createBookCard(book) {
 
   // Add Attributes
   card.className = "book-card";
+  card.dataset.id = book.id;
   title.className = "book-title";
   author.className = "book-author";
   read.className = "book-read btn read-toggle";
@@ -87,11 +88,11 @@ function createBookCard(book) {
   });
 }
 
-function del(title, author) {
-  library = library.filter(function (b) {
-    return b.title !== title || b.author !== author;
-  });
+function del(bookCard) {
+  bookCard.remove();
 }
+
+function removeBookCard(bookCard) {}
 
 function showAlert(message) {
   const alertContainer = document.querySelector(".alert-container");
@@ -148,7 +149,8 @@ function addBookToLibrary(title, author, read) {
   } else if (!author) {
     showAlert("author : Required");
   } else {
-    let book = new Book(title, author, read);
+    const id = uniqueid(); // Generate unique ID
+    let book = new Book(id, title, author, read);
     library.push(book);
     resetLibrary();
   }
