@@ -1,11 +1,15 @@
+const libraryContainer = document.querySelector(".library-container");
 let library = [];
 
-function Book(title, author, read) {
-  this.title = title;
-  this.author = author;
-  this.read = read;
+class Book {
+  constructor(title, author, read) {
+    this.title = title;
+    this.author = author;
+    this.read = read;
+  }
 }
 
+// To run at first load
 window.addEventListener("DOMContentLoaded", function () {
   getLibrary();
 });
@@ -23,6 +27,18 @@ function getLibrary() {
   showBooks();
   showTotalBook();
 }
+
+libraryContainer.addEventListener("click", (event) => {
+  if (event.target.classList.contains("book-remove")) {
+    const book = event.target.parentElement;
+    let title = book.querySelector(".book-title").textContent;
+    let author = book.querySelector(".book-author").textContent;
+    del(title, author);
+
+    resetLibrary();
+    setLibrary();
+  }
+});
 
 function createBookCard(book) {
   // Create Elements
@@ -47,24 +63,15 @@ function createBookCard(book) {
   remove.textContent = "remove";
 
   // Add elements to library UI
-  document.querySelector(".library-container").appendChild(card);
+  libraryContainer.appendChild(card);
   card.appendChild(title);
   card.appendChild(author);
   card.appendChild(read);
   card.appendChild(remove);
 
   // Add events
-  remove.addEventListener("click", function () {
-    const book = this.parentElement;
-    let title = book.querySelector(".book-title").textContent;
-    let author = book.querySelector(".book-author").textContent;
-    del(title, author);
 
-    resetLibrary();
-    setLibrary();
-  });
-
-  read.addEventListener("click", function () {
+  read.addEventListener("change", function () {
     const book = this.parentElement;
     let title = book.querySelector(".book-title").textContent;
     let author = book.querySelector(".book-author").textContent;
@@ -110,7 +117,7 @@ function showBooks() {
 
 function resetLibrary() {
   //  Reset the whole library so that books won't multi
-  document.querySelector(".library-container").innerHTML = "";
+  libraryContainer.innerHTML = "";
 }
 
 function resetForm() {
