@@ -18,7 +18,7 @@ class Book {
 window.addEventListener("DOMContentLoaded", function () {
   getLibrary();
   showBooks();
-  showTotalBook();
+  showTotalBooks();
 });
 
 isReadBtn.addEventListener("click", (event) => {
@@ -47,7 +47,6 @@ function createBookCard(book) {
   const card = document.createElement("div");
   card.dataset.id = book.id;
   card.className = "book-card";
-  libraryContainer.appendChild(card);
 
   const title = document.createElement("h1");
   title.className = "book-title";
@@ -69,11 +68,13 @@ function createBookCard(book) {
   remove.className = "book-remove btn";
   remove.textContent = "remove";
   card.appendChild(remove);
+
+  libraryContainer.appendChild(card);
 }
 
 function removeBookCard(bookCard) {
   const id = bookCard.dataset.id;
-  library = library.filter(function (book) {
+  library = library.filter((book) => {
     return book.id !== id;
   });
 }
@@ -88,8 +89,8 @@ function showAlert(message) {
   }, 2800);
 }
 
-function showTotalBook() {
-  let totalBooks = library.length;
+function showTotalBooks() {
+  const totalBooks = library.length;
   document.querySelector(".total-books").textContent = totalBooks;
 }
 
