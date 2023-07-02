@@ -137,13 +137,9 @@ function addBookToLibrary(title, author, isRead) {
   }
 }
 
-// Events
-
 libraryContainer.addEventListener("click", (event) => {
-  // Delete book and remove card
+  const bookCard = event.target.closest(".book-card");
   if (event.target.classList.contains("book-remove")) {
-    const bookCard = event.target.parentElement;
-
     bookCard.remove();
     removeBookCard(bookCard);
     setLibrary();
@@ -151,46 +147,37 @@ libraryContainer.addEventListener("click", (event) => {
 
   // Toggle read status
   if (event.target.classList.contains("book-read")) {
-    const id = event.target.parentElement.dataset.id;
-    const isRead = event.target.dataset.isRead === "false";
-    event.target.dataset.isRead = isRead;
-
+    const id = bookCard.dataset.id;
+    const isRead = bookCard.dataset.isRead === "false";
+    bookCard.dataset.isRead = isRead;
+    event.target.textContext = isRead ? "unread" : "read";
     // Update library list's isRead status by ID
     const book = library.find((b) => b.id === id);
     if (book) {
       book.isRead = isRead;
       setLibrary();
-      // Add or remove the "light-red-gradient" class based on the updated isRead value
-      if (isRead) {
-        event.target.textContent = "unread";
-      } else {
-        event.target.textContent = "read";
-      }
     }
   }
 });
 
-submitBookBtn.addEventListener("click", function (event) {
+submitBookBtn.addEventListener("click", (event) => {
   event.preventDefault();
-  let title = document.querySelector(".title-input").value;
-  let author = document.querySelector(".author-input").value;
-  let isRead = document.querySelector("form>.is-read").dataset.isRead;
+  const titleInput = document.querySelector(".title-input");
+  const authorInput = document.querySelector(".author-input");
+  const isReadInput = document.querySelector("form > .is-read");
+  const title = titleInput.value.trim();
+  const author = authorInput.value.trim();
+  const isRead = isReadInput.dataset.isRead === "true";
 
-  function validation() {
-    if (title.length > 50 || author.length > 50) {
-      showAlert("Input can't be longer than 50");
+  if (title.length > 50 || author.length > 50) {
+    showAlert("Input can't be longer than 50");
+  } else {
+    if (isBookNotInLibrary(title, author)) {
+      addBookToLibrary(title, author, isRead);
     } else {
-      if (isNotExist(title, author)) {
-        resetForm();
-        addBookToLibrary(title, author, isRead);
-        setLibrary();
-        showBooks();
-      } else {
-        showAlert("The book is already exists");
-      }
+      showAlert("The book is already exists");
     }
   }
-  validation();
 });
 
 loginBtn.addEventListener("click", function () {
