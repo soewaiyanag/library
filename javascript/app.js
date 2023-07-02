@@ -45,31 +45,29 @@ function getBookDetails(bookCard) {
 function createBookCard(book) {
   // Create Elements
   const card = document.createElement("div");
-  const title = document.createElement("h1");
-  const author = document.createElement("h3");
-  const read = document.createElement("button");
-  const remove = document.createElement("button");
-
-  // Add Attributes
   card.dataset.id = book.id;
   card.className = "book-card";
-  title.className = "book-title";
-  author.className = "book-author";
-  read.className = "book-read btn read-toggle";
-  remove.className = "book-remove btn";
+  libraryContainer.appendChild(card);
 
-  // Take value from form and store
+  const title = document.createElement("h1");
+  title.className = "book-title";
   title.textContent = book.title;
+  card.appendChild(title);
+
+  const author = document.createElement("h3");
+  author.className = "book-author";
   author.textContent = book.author;
+  card.appendChild(author);
+
+  const read = document.createElement("button");
+  read.className = "book-read btn read-toggle";
   read.dataset.isRead = book.isRead;
   read.textContent = read.dataset.isRead === "false" ? "read" : "unread";
-  remove.textContent = "remove";
-
-  // Add elements to library UI
-  libraryContainer.appendChild(card);
-  card.appendChild(title);
-  card.appendChild(author);
   card.appendChild(read);
+
+  const remove = document.createElement("button");
+  remove.className = "book-remove btn";
+  remove.textContent = "remove";
   card.appendChild(remove);
 }
 
