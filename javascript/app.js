@@ -1,5 +1,5 @@
 const libraryContainer = document.querySelector(".library-container");
-const isReadBtn = document.querySelector("form>.is-read.btn");
+const isReadBtn = document.querySelector("form > .is-read.btn");
 const submitBookBtn = document.querySelector(".submit-book");
 const loginBtn = document.querySelector(".login.btn");
 
@@ -22,13 +22,8 @@ window.addEventListener("DOMContentLoaded", function () {
 isReadBtn.addEventListener("click", (event) => {
   const isRead = event.target.dataset.isRead === "false";
   event.target.dataset.isRead = isRead;
-  if (isRead) {
-    event.target.classList.add("light-red-gradient");
-    event.target.textContent = "unread";
-  } else {
-    event.target.classList.remove("light-red-gradient");
-    event.target.textContent = "read";
-  }
+  event.target.classList.toggle("light-red-gradient", isRead);
+  event.target.textContext = isRead ? "unread" : "read";
 });
 
 function setLibrary() {
