@@ -95,10 +95,9 @@ function showTotalBooks() {
 }
 
 function showBooks() {
-  let totalBooks = library.length;
-  for (let i = 0; i < totalBooks; i++) {
-    createBookCard(library[i]);
-  }
+  resetLibrary();
+  library.forEach((book) => createBookCard(book));
+  showTotalBooks();
 }
 
 // Remove all book cards from library container element
@@ -112,22 +111,15 @@ function resetForm() {
   //  Reset the form inputs
   document.querySelector(".title-input").value = "";
   document.querySelector(".author-input").value = "";
-  document.querySelector("form>.is-read").checked = false;
+  document.querySelector("form > .is-read").checked = false;
 }
 
 // To check the book that if input is already exist in library or not
-function isNotExist(title, author) {
-  let totalBooks = library.length;
-  for (let i = 0; i < totalBooks; i++) {
-    let book = library[i];
-    if (
-      book.title.toLowerCase() === title.toLowerCase() &&
-      book.author.toLowerCase() === author.toLowerCase()
-    ) {
-      return false;
-    }
-  }
-  return true;
+function isBookNotInLibrary(title, author) {
+  return library.every((book) => {
+    book.title.toLowerCase() !== title.toLowerCase() ||
+      book.author.toLowerCase() !== author.toLowerCase();
+  });
 }
 
 function addBookToLibrary(title, author, isRead) {
@@ -140,6 +132,8 @@ function addBookToLibrary(title, author, isRead) {
     let book = new Book(id, title, author, isRead);
     library.push(book);
     resetLibrary();
+    showBooks();
+    resetForm();
   }
 }
 
