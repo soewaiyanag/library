@@ -42,14 +42,21 @@
       margin-bottom: 0.5rem;
     }
   }
-  .book-read {
-    line-height: 2.5;
-    color: #fff;
+
+  button {
     min-width: 100px;
-  }
-  .book-remove {
-    max-width: 100px;
     color: #fff;
+  }
+
+  .book-remove {
     background: #ff0000;
   }
+}
+
+.book-read {
+  @include gradient(lime);
+}
+
+.book-read[data-is-read="true"] {
+  @include gradient(light-red);
 }

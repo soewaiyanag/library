@@ -29,29 +29,6 @@
   margin-right: auto;
 }
 
-.read-toggle {
-  appearance: none;
-  cursor: pointer;
-  background: linear-gradient(90deg, hsl(210, 78%, 56%) 0%, hsl(146, 68%, 55%) 100%);
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-.read-toggle::before {
-  content: "read";
-  font-weight: 700;
-}
-.read-toggle:checked {
-  background-color: #bd4f6c;
-  background-image: linear-gradient(326deg, #bd4f6c 0%, #d7816a 74%);
-}
-.read-toggle:checked::before {
-  content: "unread";
-}
-
 .btn {
   display: inline-block;
   outline: none;
@@ -75,12 +52,6 @@
 .btn:active {
   outline: white 0.1rem solid;
   box-shadow: none;
-}
-
-.btn-red {
-  color: #fff;
-  background-color: #bd4f6c;
-  background-image: linear-gradient(326deg, #bd4f6c 0%, #d7816a 74%);
 }
 
 .btn-gradient {
@@ -243,7 +214,7 @@ form input {
   outline: none;
   text-align: center;
 }
-form .isRead {
+form .is-read {
   text-transform: uppercase;
 }
 form .btn {
@@ -314,15 +285,21 @@ form .btn {
   color: var(--clr-text-secondary);
   margin-bottom: 0.5rem;
 }
-.library-container .book-read {
-  line-height: 2.5;
-  color: #fff;
+.library-container button {
   min-width: 100px;
+  color: #fff;
 }
 .library-container .book-remove {
-  max-width: 100px;
-  color: #fff;
   background: #ff0000;
+}
+
+.book-read {
+  background: linear-gradient(90deg, hsl(210, 78%, 56%) 0%, hsl(146, 68%, 55%) 100%);
+}
+
+.book-read[data-is-read=true] {
+  background-color: #bd4f6c;
+  background-image: linear-gradient(326deg, #bd4f6c 0%, #d7816a 74%);
 }
 
 @media (max-width: 768px) {
