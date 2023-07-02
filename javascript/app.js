@@ -17,6 +17,8 @@ class Book {
 // To run at first load
 window.addEventListener("DOMContentLoaded", function () {
   getLibrary();
+  showBooks();
+  showTotalBook();
 });
 
 isReadBtn.addEventListener("click", (event) => {
@@ -27,14 +29,11 @@ isReadBtn.addEventListener("click", (event) => {
 });
 
 function setLibrary() {
-  localStorage.clear();
   localStorage.setItem("book-library", JSON.stringify(library));
 }
 
 function getLibrary() {
   library = JSON.parse(localStorage.getItem("book-library")) ?? [];
-  showBooks();
-  showTotalBook();
 }
 
 function getBookDetails(bookCard) {
