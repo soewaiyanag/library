@@ -53,10 +53,10 @@
   }
 }
 
-.book-read {
+.is-read {
   @include gradient(lime);
 }
 
-.book-read[data-is-read="true"] {
+.is-read[data-is-read="true"] {
   @include gradient(light-red);
 }

@@ -25,7 +25,7 @@ isReadBtn.addEventListener("click", (event) => {
   const isRead = event.target.dataset.isRead === "false";
   event.target.dataset.isRead = isRead;
   event.target.classList.toggle("light-red-gradient", isRead);
-  event.target.textContext = isRead ? "unread" : "read";
+  event.target.textContent = isRead ? "unread" : "read";
 });
 
 function setLibrary() {
@@ -59,7 +59,7 @@ function createBookCard(book) {
   card.appendChild(author);
 
   const read = document.createElement("button");
-  read.className = "book-read btn read-toggle";
+  read.className = "is-read btn-gradient btn read-toggle";
   read.dataset.isRead = book.isRead;
   read.textContent = read.dataset.isRead === "false" ? "read" : "unread";
   card.appendChild(read);
@@ -116,10 +116,11 @@ function resetForm() {
 
 // To check the book that if input is already exist in library or not
 function isBookNotInLibrary(title, author) {
-  return library.every((book) => {
-    book.title.toLowerCase() !== title.toLowerCase() ||
-      book.author.toLowerCase() !== author.toLowerCase();
-  });
+  return library.every(
+    (book) =>
+      book.title.toLowerCase() !== title.toLowerCase() ||
+      book.author.toLowerCase() !== author.toLowerCase()
+  );
 }
 
 function addBookToLibrary(title, author, isRead) {
@@ -146,11 +147,11 @@ libraryContainer.addEventListener("click", (event) => {
   }
 
   // Toggle read status
-  if (event.target.classList.contains("book-read")) {
+  if (event.target.classList.contains("is-read")) {
     const id = bookCard.dataset.id;
-    const isRead = bookCard.dataset.isRead === "false";
-    bookCard.dataset.isRead = isRead;
-    event.target.textContext = isRead ? "unread" : "read";
+    const isRead = event.target.dataset.isRead === "false";
+    event.target.dataset.isRead = isRead;
+    event.target.textContent = isRead ? "unread" : "read";
     // Update library list's isRead status by ID
     const book = library.find((b) => b.id === id);
     if (book) {
