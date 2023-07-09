@@ -1,177 +1,200 @@
+// DOM elements
+const libraryContainer = document.querySelector(".library-container");
+const isReadBtn = document.querySelector("form > .is-read.btn");
+const submitBookBtn = document.querySelector(".submit-book");
+const loginBtn = document.querySelector(".login.btn");
+
+// Library array
 let library = [];
 
-function Book(title, author, read) {
-  this.title = title;
-  this.author = author;
-  this.read = read;
+// Book class
+class Book {
+  constructor(id, title, author, isRead) {
+    this.id = id;
+    this.title = title;
+    this.author = author;
+    this.isRead = isRead;
+  }
 }
 
-window.addEventListener("DOMContentLoaded", function () {
+// Event listener for initial load
+window.addEventListener("DOMContentLoaded", () => {
   getLibrary();
+  showBooks();
+  showTotalBooks();
 });
 
+// Event listener for isRead button
+isReadBtn.addEventListener("click", (event) => {
+  const isRead = event.target.dataset.isRead === "false";
+  event.target.dataset.isRead = isRead;
+  event.target.classList.toggle("light-red-gradient", isRead);
+  event.target.textContent = isRead ? "unread" : "read";
+});
+
+// Set library in local storage
 function setLibrary() {
-  resetLibrary();
-  showBooks();
-  showTotalBook();
-  localStorage.clear();
   localStorage.setItem("book-library", JSON.stringify(library));
 }
 
+// Get library from local storage
 function getLibrary() {
   library = JSON.parse(localStorage.getItem("book-library")) ?? [];
-  showBooks();
-  showTotalBook();
 }
 
+// Get book details from book card
+function getBookDetails(bookCard) {
+  const title = bookCard.querySelector(".book-title").textContent;
+  const author = bookCard.querySelector(".book-author").textContent;
+  return { title, author };
+}
+
+// Create a book card
 function createBookCard(book) {
-  // Create Elements
   const card = document.createElement("div");
-  const title = document.createElement("h1");
-  const author = document.createElement("h3");
-  const read = document.createElement("input");
-  const remove = document.createElement("button");
-
-  // Add Attributes
+  card.dataset.id = book.id;
   card.className = "book-card";
+
+  const title = document.createElement("h1");
   title.className = "book-title";
-  author.className = "book-author";
-  read.className = "book-read btn read-toggle";
-  read.setAttribute("type", "checkbox");
-  remove.className = "book-remove btn";
-
-  // Take value from form and store
   title.textContent = book.title;
-  author.textContent = book.author;
-  read.checked = book.read;
-  remove.textContent = "remove";
-
-  // Add elements to library UI
-  document.querySelector(".library-container").appendChild(card);
   card.appendChild(title);
+
+  const author = document.createElement("h3");
+  author.className = "book-author";
+  author.textContent = book.author;
   card.appendChild(author);
+
+  const read = document.createElement("button");
+  read.className = "is-read btn-gradient btn read-toggle";
+  read.dataset.isRead = book.isRead;
+  read.textContent = read.dataset.isRead === "false" ? "read" : "unread";
   card.appendChild(read);
+
+  const remove = document.createElement("button");
+  remove.className = "book-remove btn";
+  remove.textContent = "remove";
   card.appendChild(remove);
 
-  // Add events
-  remove.addEventListener("click", function () {
-    const book = this.parentElement;
-    let title = book.querySelector(".book-title").textContent;
-    let author = book.querySelector(".book-author").textContent;
-    del(title, author);
-
-    resetLibrary();
-    setLibrary();
-  });
-
-  read.addEventListener("click", function () {
-    const book = this.parentElement;
-    let title = book.querySelector(".book-title").textContent;
-    let author = book.querySelector(".book-author").textContent;
-    let read = book.querySelector(".book-read").checked;
-    library.forEach(function (b) {
-      if (title === b.title && author === b.author) {
-        b.read = read;
-      }
-    });
-
-    resetLibrary();
-    setLibrary();
-  });
+  libraryContainer.appendChild(card);
 }
 
-function del(title, author) {
-  library = library.filter(function (b) {
-    return b.title !== title || b.author !== author;
-  });
+// Remove a book card
+function removeBookCard(bookCard) {
+  const id = bookCard.dataset.id;
+  library = library.filter((book) => book.id !== id);
 }
 
+// Show an alert message
 function showAlert(message) {
   const alertContainer = document.querySelector(".alert-container");
   const alert = document.createElement("p");
   alert.textContent = message.toUpperCase();
   alertContainer.appendChild(alert);
-  setTimeout(function () {
+  setTimeout(() => {
     alert.remove();
   }, 2800);
 }
 
-function showTotalBook() {
-  let totalBooks = library.length;
+// Show total number of books
+function showTotalBooks() {
+  const totalBooks = library.length;
   document.querySelector(".total-books").textContent = totalBooks;
 }
 
+// Show all books
 function showBooks() {
-  let totalBooks = library.length;
-  for (let i = 0; i < totalBooks; i++) {
-    createBookCard(library[i]);
-  }
+  resetLibrary();
+  library.forEach((book) => createBookCard(book));
+  showTotalBooks();
 }
 
+// Reset library container
 function resetLibrary() {
-  //  Reset the whole library so that books won't multi
-  document.querySelector(".library-container").innerHTML = "";
+  libraryContainer.innerHTML = "";
 }
 
+// Reset the form inputs
 function resetForm() {
   //  Reset the form inputs
   document.querySelector(".title-input").value = "";
   document.querySelector(".author-input").value = "";
-  document.querySelector(".isRead").checked = false;
+  document.querySelector("form > .is-read").dataset.isRead = false;
+  document.querySelector("form > .is-read").textContent = "read";
 }
 
-// To check the book that if input is already exist in library or not
-function isNotExist(title, author) {
-  let totalBooks = library.length;
-  for (let i = 0; i < totalBooks; i++) {
-    let book = library[i];
-    if (
-      book.title.toLowerCase() === title.toLowerCase() &&
-      book.author.toLowerCase() === author.toLowerCase()
-    ) {
-      return false;
-    }
-  }
-  return true;
+// Check if the book is not in the library
+function isBookNotInLibrary(title, author) {
+  return library.every(
+    (book) =>
+      book.title.toLowerCase() !== title.toLowerCase() ||
+      book.author.toLowerCase() !== author.toLowerCase()
+  );
 }
 
-function addBookToLibrary(title, author, read) {
+// Add book to library
+function addBookToLibrary(title, author, isRead) {
   if (!title) {
-    showAlert("Title : Required");
+    showAlert("Title: Required");
   } else if (!author) {
-    showAlert("author : Required");
+    showAlert("Author: Required");
   } else {
-    let book = new Book(title, author, read);
+    const id = uniqueid(); // Generate unique ID
+    const book = new Book(id, title, author, isRead);
     library.push(book);
     resetLibrary();
+    showBooks();
+    resetForm();
   }
 }
 
-const submitBookBtn = document.querySelector(".submit-book");
+// Event listener for library container
+libraryContainer.addEventListener("click", (event) => {
+  const bookCard = event.target.closest(".book-card");
 
-submitBookBtn.addEventListener("click", function (e) {
-  e.preventDefault();
-  let title = document.querySelector(".title-input").value;
-  let author = document.querySelector(".author-input").value;
-  let read = document.querySelector(".isRead").checked;
+  // Remove book card
+  if (event.target.classList.contains("book-remove")) {
+    bookCard.remove();
+    removeBookCard(bookCard);
+    setLibrary();
+  }
 
-  function validition() {
-    if (title.length > 50 || author.length > 50) {
-      showAlert("Input can't be longer than 50");
-    } else {
-      if (isNotExist(title, author)) {
-        resetForm();
-        addBookToLibrary(title, author, read);
-        setLibrary();
-      } else {
-        showAlert("The book is already exists");
-      }
+  // Toggle read status
+  if (event.target.classList.contains("is-read")) {
+    const id = bookCard.dataset.id;
+    const isRead = event.target.dataset.isRead === "false";
+    event.target.dataset.isRead = isRead;
+    event.target.textContent = isRead ? "unread" : "read";
+    const book = library.find((b) => b.id === id);
+    if (book) {
+      book.isRead = isRead;
+      setLibrary();
     }
   }
-  validition();
 });
 
-const loginBtn = document.querySelector(".login.btn");
-loginBtn.addEventListener("click", function () {
-  showAlert("Haven't learn backend yet");
+// Event listener for submit book button
+submitBookBtn.addEventListener("click", (event) => {
+  event.preventDefault();
+  const titleInput = document.querySelector(".title-input");
+  const authorInput = document.querySelector(".author-input");
+  const isReadInput = document.querySelector("form > .is-read");
+  const title = titleInput.value.trim();
+  const author = authorInput.value.trim();
+  const isRead = isReadInput.dataset.isRead === "true";
+
+  if (title.length > 50 || author.length > 50) {
+    showAlert("Input can't be longer than 50");
+  } else {
+    if (isBookNotInLibrary(title, author)) {
+      addBookToLibrary(title, author, isRead);
+    } else {
+      showAlert("The book already exists");
+    }
+  }
+});
+
+// Event listener for login button
+loginBtn.addEventListener("click", () => {
+  showAlert("Haven't learned backend yet");
 });
