@@ -32,7 +32,7 @@
 .read-toggle {
   appearance: none;
   cursor: pointer;
-  background: linear-gradient(90deg, #378fe6 0%, #3eda82 100%);
+  background: linear-gradient(90deg, hsl(210, 78%, 56%) 0%, hsl(146, 68%, 55%) 100%);
   color: #fff;
   display: flex;
   justify-content: center;
@@ -85,7 +85,7 @@
 
 .btn-gradient {
   color: #fff;
-  background: linear-gradient(90deg, #378fe6 0%, #3eda82 100%);
+  background: linear-gradient(90deg, hsl(210, 78%, 56%) 0%, hsl(146, 68%, 55%) 100%);
 }
 
 .btn-transparent {
@@ -150,7 +150,7 @@ header .toggle .switch {
   width: 50px;
   height: 25px;
   appearance: none;
-  background: linear-gradient(90deg, #378fe6 0%, #3eda82 100%);
+  background: linear-gradient(90deg, hsl(210, 78%, 56%) 0%, hsl(146, 68%, 55%) 100%);
   border-radius: 5rem;
 }
 header .toggle .switch::before {
@@ -165,11 +165,11 @@ header .toggle .switch::before {
   transition: 300ms left;
 }
 header .toggle .switch:checked {
-  background: #aeb3cb;
+  background: hsl(230, 22%, 74%);
   box-shadow: inset rgba(0, 0, 0, 0.5);
 }
 header .toggle .switch:checked:hover {
-  background: linear-gradient(90deg, #378fe6 0%, #3eda82 100%);
+  background: linear-gradient(90deg, hsl(210, 78%, 56%) 0%, hsl(146, 68%, 55%) 100%);
 }
 header .toggle .switch:checked::before {
   left: 25px;
@@ -188,7 +188,7 @@ header .btn-container {
   border-radius: 3px;
   padding: 0.2rem;
   text-align: center;
-  background-color: rgba(255, 0, 0, 0.7);
+  background-color: hsla(0, 100%, 50%, 0.7);
 }
 
 :root {
@@ -297,7 +297,7 @@ form .btn {
 }
 .library-container .book-card::before {
   content: "";
-  background: linear-gradient(90deg, #378fe6 0%, #3eda82 100%);
+  background: linear-gradient(90deg, hsl(210, 78%, 56%) 0%, hsl(146, 68%, 55%) 100%);
   position: absolute;
   top: 0;
   left: 0;
@@ -329,11 +329,9 @@ form .btn {
   .heading {
     padding-bottom: 2rem;
   }
-
   .toggle {
     padding-top: 2rem;
   }
-
   form {
     flex-direction: column;
   }
@@ -357,11 +355,9 @@ form .btn {
     grid-column: span 2;
     justify-content: flex-end;
   }
-
   .library-container {
     grid-template-columns: repeat(2, minmax(100px, 1fr));
   }
-
   .overview {
     grid-template-columns: repeat(2, minmax(100px, 1fr));
   }
@@ -370,7 +366,6 @@ form .btn {
   .library-container {
     grid-template-columns: repeat(4, minmax(200px, 1fr));
   }
-
   .overview {
     grid-template-columns: repeat(4, minmax(200px, 1fr));
   }
