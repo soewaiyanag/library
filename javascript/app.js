@@ -1,8 +1,10 @@
 // DOM elements
 const libraryContainer = document.querySelector(".library-container");
-const isReadBtn = document.querySelector("form > .is-read.btn");
-const submitBookBtn = document.querySelector(".submit-book");
-const loginBtn = document.querySelector(".login.btn");
+const titleInput = document.querySelector(".title-input");
+const authorInput = document.querySelector(".author-input");
+const toggleReadButton = document.querySelector("form > .is-read.btn");
+const submitBookButton = document.querySelector(".submit-book");
+const loginButton = document.querySelector(".login.btn");
 
 // Library array
 let library = [];
@@ -25,7 +27,7 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 // Event listener for isRead button
-isReadBtn.addEventListener("click", (event) => {
+toggleReadButton.addEventListener("click", (event) => {
   const isRead = event.target.dataset.isRead === "false";
   event.target.dataset.isRead = isRead;
   event.target.textContent = isRead ? "unread" : "read";
@@ -103,9 +105,7 @@ function showTotalBooks() {
 
 // Show all books
 function showBooks() {
-  resetLibrary();
   library.forEach((book) => createBookCard(book));
-  showTotalBooks();
 }
 
 // Reset library container
@@ -117,11 +117,10 @@ function resetLibrary() {
 
 // Reset the form inputs
 function resetForm() {
-  //  Reset the form inputs
-  document.querySelector(".title-input").value = "";
-  document.querySelector(".author-input").value = "";
-  document.querySelector("form > .is-read").dataset.isRead = false;
-  document.querySelector("form > .is-read").textContent = "read";
+  titleInput.value = "";
+  authorInput.value = "";
+  toggleReadButton.dataset.isRead = false;
+  toggleReadButton.textContent = "read";
 }
 
 // Check if the book is not in the library
@@ -145,6 +144,7 @@ function addBookToLibrary(title, author, isRead) {
     library.push(book);
     resetLibrary();
     showBooks();
+    showTotalBooks();
     resetForm();
     setLibrary();
   }
@@ -159,6 +159,7 @@ libraryContainer.addEventListener("click", (event) => {
     bookCard.remove();
     removeBookCard(bookCard);
     setLibrary();
+    showTotalBooks();
   }
 
   // Toggle read status
@@ -176,9 +177,8 @@ libraryContainer.addEventListener("click", (event) => {
 });
 
 // Event listener for submit book button
-submitBookBtn.addEventListener("click", (event) => {
+submitBookButton.addEventListener("click", (event) => {
   event.preventDefault();
-  const titleInput = document.querySelector(".title-input");
   const authorInput = document.querySelector(".author-input");
   const isReadInput = document.querySelector("form > .is-read");
   const title = titleInput.value.trim();
@@ -197,6 +197,6 @@ submitBookBtn.addEventListener("click", (event) => {
 });
 
 // Event listener for login button
-loginBtn.addEventListener("click", () => {
+loginButton.addEventListener("click", () => {
   showAlert("Haven't learned backend yet");
 });
