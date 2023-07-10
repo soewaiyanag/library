@@ -28,7 +28,6 @@ window.addEventListener("DOMContentLoaded", () => {
 isReadBtn.addEventListener("click", (event) => {
   const isRead = event.target.dataset.isRead === "false";
   event.target.dataset.isRead = isRead;
-  event.target.classList.toggle("light-red-gradient", isRead);
   event.target.textContent = isRead ? "unread" : "read";
 });
 
@@ -111,7 +110,9 @@ function showBooks() {
 
 // Reset library container
 function resetLibrary() {
-  libraryContainer.innerHTML = "";
+  while (libraryContainer.firstChild) {
+    libraryContainer.firstChild.remove();
+  }
 }
 
 // Reset the form inputs
@@ -145,6 +146,7 @@ function addBookToLibrary(title, author, isRead) {
     resetLibrary();
     showBooks();
     resetForm();
+    setLibrary();
   }
 }
 
