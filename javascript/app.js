@@ -1,15 +1,14 @@
 // DOM elements
 const libraryContainer = document.querySelector(".library-container");
+const addBookForm = document.getElementById("add-book-form");
 const titleInput = document.querySelector(".title-input");
 const authorInput = document.querySelector(".author-input");
 const toggleReadButton = document.querySelector("form > .is-read.btn");
 const submitBookButton = document.querySelector(".submit-book");
 const loginButton = document.querySelector(".login.btn");
 
-// Library array
 let library = [];
 
-// Book class
 class Book {
   constructor(id, title, author, isRead) {
     this.id = id;
@@ -26,7 +25,6 @@ window.addEventListener("DOMContentLoaded", () => {
   showTotalBooks();
 });
 
-// Event listener for isRead button
 toggleReadButton.addEventListener("click", (event) => {
   const isRead = event.target.dataset.isRead === "false";
   event.target.dataset.isRead = isRead;
@@ -43,14 +41,12 @@ function getLibrary() {
   library = JSON.parse(localStorage.getItem("book-library")) ?? [];
 }
 
-// Get book details from book card
 function getBookDetails(bookCard) {
   const title = bookCard.querySelector(".book-title").textContent;
   const author = bookCard.querySelector(".book-author").textContent;
   return { title, author };
 }
 
-// Create a book card
 function createBookCard(book) {
   const card = document.createElement("div");
   card.dataset.id = book.id;
@@ -80,13 +76,11 @@ function createBookCard(book) {
   libraryContainer.appendChild(card);
 }
 
-// Remove a book card
 function removeBookCard(bookCard) {
   const id = bookCard.dataset.id;
   library = library.filter((book) => book.id !== id);
 }
 
-// Show an alert message
 function showAlert(message) {
   const alertContainer = document.querySelector(".alert-container");
   const alert = document.createElement("p");
@@ -97,13 +91,11 @@ function showAlert(message) {
   }, 2800);
 }
 
-// Show total number of books
 function showTotalBooks() {
   const totalBooks = library.length;
   document.querySelector(".total-books").textContent = totalBooks;
 }
 
-// Show all books
 function showBooks() {
   library.forEach((book) => createBookCard(book));
 }
@@ -117,10 +109,9 @@ function resetLibrary() {
 
 // Reset the form inputs
 function resetForm() {
-  titleInput.value = "";
-  authorInput.value = "";
   toggleReadButton.dataset.isRead = false;
   toggleReadButton.textContent = "read";
+  addBookForm.reset();
 }
 
 // Check if the book is not in the library
@@ -132,7 +123,6 @@ function isBookNotInLibrary(title, author) {
   );
 }
 
-// Add book to library
 function addBookToLibrary(title, author, isRead) {
   if (!title) {
     showAlert("Title: Required");
@@ -150,7 +140,6 @@ function addBookToLibrary(title, author, isRead) {
   }
 }
 
-// Event listener for library container
 libraryContainer.addEventListener("click", (event) => {
   const bookCard = event.target.closest(".book-card");
 
@@ -176,7 +165,6 @@ libraryContainer.addEventListener("click", (event) => {
   }
 });
 
-// Event listener for submit book button
 submitBookButton.addEventListener("click", (event) => {
   event.preventDefault();
   const authorInput = document.querySelector(".author-input");
@@ -196,7 +184,6 @@ submitBookButton.addEventListener("click", (event) => {
   }
 });
 
-// Event listener for login button
 loginButton.addEventListener("click", () => {
   showAlert("Haven't learned backend yet");
 });
